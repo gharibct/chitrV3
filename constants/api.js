@@ -1,0 +1,1 @@
+export const BASEURL = "http://machynworks.com:5001/";

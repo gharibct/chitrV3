@@ -1,0 +1,32 @@
+{
+  "expo": {
+    "name": "Chitr Certification",
+    "slug": "ChitrV3",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "version": "1.1.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "splash": {
+      "image": "./assets/Certified.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android":{
+      "package":"com.machynworks.chitrv3",
+      "versionCode":2
+    }    
+  }
+}
