@@ -1,12 +1,12 @@
-import { GET_CREDIT, GET_CERTLIST } from '../actions/cert';
+import { GET_CREDIT, GET_CERTLIST, CLEAR_DATA } from '../actions/cert';
 
 const initialState = {
     //token: null,
     credit: 0,
     certList: [],
     certCount: 0,
-    maxPhotoCount:5,
-    certTime:300
+    maxPhotoCount: 5,
+    certTime: 300
 };
 
 export default (state = initialState, action) => {
@@ -22,9 +22,10 @@ export default (state = initialState, action) => {
                 //token: action.token,
                 ...state,
                 certList: action.certList,
-                certCount: action.certList.length                
+                certCount: action.certList.length
             };
-                       
+        case CLEAR_DATA:
+            return initialState;
         default:
             return state;
     }

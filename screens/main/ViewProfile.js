@@ -34,7 +34,9 @@ const ViewProfile = props => {
     >
       <View style={styles.gradient}>
         <Card style={styles.authContainer}>
-          <ScrollView>
+          <ScrollView
+          keyboardShouldPersistTaps='always'
+          >
             <View style={styles.imageContainer}>
               <Image
                 style={styles.image}

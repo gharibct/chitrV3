@@ -96,7 +96,7 @@ const HomePage = props => {
 
     try {
       await dispatch(certActions.getCredits(authValues.userId))
-      await dispatch(certActions.getCertList(authValues.userId))      
+      await dispatch(certActions.getCertList(authValues.userId))
       props.navigation.navigate('viewCert')
       setIsLoading(false)
     }
@@ -104,8 +104,8 @@ const HomePage = props => {
       setIsLoading(false)
       setError(err.message)
     }
-  }  
-  
+  }
+
   const onNewCertificate = async () => {
     setError(null);
     setIsLoading(true);
@@ -119,7 +119,7 @@ const HomePage = props => {
       setIsLoading(false)
       setError(err.message)
     }
-  }  
+  }
 
 
 
@@ -135,7 +135,9 @@ const HomePage = props => {
     >
       <View style={styles.gradient}>
         <Card style={styles.mainContainer}>
-          <ScrollView>
+          <ScrollView
+            keyboardShouldPersistTaps='always'
+          >
             <View style={styles.welcomeContainer}>
               <Text
                 style={styles.welcomeText}
@@ -143,22 +145,24 @@ const HomePage = props => {
               </Text>
             </View>
 
-            <View style={styles.generalContainerWrapper}>
-              <View style={styles.newCertContainer}>
-                <TouchableCmp useForeground
-                  onPress={() => {
-                    onNewCertificate();
-                  }}
-                >
+            <TouchableCmp useForeground
+              onPress={() => {
+                onNewCertificate();
+              }}
+            >
+              <View style={styles.generalContainerWrapper}>
+                <View style={styles.newCertContainer}>
+
                   <Text style={styles.newcertButton}>New Certification?</Text>
-                </TouchableCmp>
+
+                </View>
               </View>
-            </View>
+            </TouchableCmp>
 
             <View style={styles.creditContainer}>
               <Text
                 style={styles.creditText}
-              >Your Available Credits
+              >Your Available Creditss
               </Text>
             </View>
 
@@ -185,21 +189,23 @@ const HomePage = props => {
               </Text>
             </View>
 
-            <View style={styles.generalContainerWrapper}>
-              <View style={styles.certificateValueContainer}>
-                <TouchableCmp useForeground
-                  onPress={() => {
-                    onViewCertificate()
-                    //props.navigation.navigate('login')
-                  }}
-                >
+            <TouchableCmp useForeground
+              onPress={() => {
+                onViewCertificate()
+                //props.navigation.navigate('login')
+              }}
+            >
+              <View style={styles.generalContainerWrapper}>
+                <View style={styles.certificateValueContainer}>
+
                   <Text
                     style={styles.certificateValueText}
                   >{certValues.certCount}
                   </Text>
-                </TouchableCmp>
+
+                </View>
               </View>
-            </View>
+            </TouchableCmp>
           </ScrollView>
         </Card>
       </View>

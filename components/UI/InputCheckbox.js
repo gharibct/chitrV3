@@ -17,14 +17,17 @@ const inputReducer = (state, action) => {
 
 const InputCheckbox = props => {
     const [inputState, dispatch] = useReducer(inputReducer, {
-        value: props.initialValue ? props.initialValue : false,
+        value: props.initialValue ? true : false,
         touched: false
     });
-
     const { onInputChange, id } = props;
 
+    useEffect(() => {
+          onInputChange(id, inputState.value, true);
+      }, [inputState, onInputChange, id]);    
+
     const inputChangeHandler = (value) => {
-        dispatch({ type: INPUT_CHANGE });
+        dispatch({ type: INPUT_CHANGE,value:value });
     };
 
 
@@ -32,8 +35,8 @@ const InputCheckbox = props => {
         <View style={styles.formControl}>
             <CheckBox
                 {...props}
-                checked={inputState.value}
-                onIconPress={()=>{
+                value={inputState.value}
+                onValueChange={()=>{
                     inputChangeHandler(inputState.value)
                 }}
             />

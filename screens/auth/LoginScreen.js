@@ -17,6 +17,8 @@ import Colors from '../../constants/Colors';
 import { useDispatch, useSelector } from 'react-redux';
 
 import * as authActions from '../../store/actions/auth';
+import * as certActions from '../../store/actions/cert';
+import * as photoActions from '../../store/actions/photo';
 
 /*Reusable code for handling user inputs -- Starts */
 const FORM_INPUT_UPDATE = 'FORM_INPUT_UPDATE';
@@ -55,6 +57,7 @@ const LoginScreen = props => {
   const authValues = useSelector(state =>
     state.auth
   );
+ 
 
   useEffect(() => {
     if (error && error != "") {
@@ -95,6 +98,30 @@ const LoginScreen = props => {
   });
   /*FormInput Ends*/
 
+    /*Screen - Init Logic*/
+    useEffect(() => {
+      screenInitHandler();
+    }, [dispatch]);
+  
+    const screenInitHandler = async () => {
+      setError(null);
+      setIsLoading(true);
+  
+      try {
+        
+        await dispatch(certActions.clearData())
+        await dispatch(authActions.clearData())
+        await dispatch(photoActions.clearData())
+        
+        setIsLoading(false)
+      }
+      catch (err) {
+        setIsLoading(false)
+        setError(err.message)
+      }
+    }
+  
+
   const loginHandler = async () => {
     /*
     if (!formState.formIsValid) {
@@ -108,9 +135,12 @@ const LoginScreen = props => {
     setIsLoading(true);
 
     try {
+      console.log(formState.inputValues.user,
+        formState.inputValues.pass)
       await dispatch(authActions.login(
         formState.inputValues.user,
         formState.inputValues.pass
+        
       ))
       setIsLoading(false)
     }
@@ -141,6 +171,7 @@ const LoginScreen = props => {
   }
 
   return (
+
     <KeyboardAvoidingView
       style={styles.screen}
     >
@@ -152,16 +183,18 @@ const LoginScreen = props => {
           <View style={styles.headerContainer}>
             <Text
               style={styles.headerText}>
-              Machynworks
+              LoBaViCerty
                 </Text>
           </View>
           <View style={styles.taglineContainer}>
             <Text
               style={styles.taglineText}>
-              Certified Electronic Message System
+              Location Based Visual Certification
                 </Text>
           </View>
-          <ScrollView>
+          <ScrollView
+          keyboardShouldPersistTaps='always'
+          >
             <Input
               id="user"
               label="E-Mail"

@@ -9,7 +9,13 @@ export const ADD_PHOTO = 'ADD_PHOTO';
 export const SET_LOCATION = 'SET_LOCATION';
 export const SET_GLOBAL = 'SET_GLOBAL';
 export const PHOTO_INFO = 'PHOTO_INFO';
+export const CLEAR_DATA = 'CLEAR_DATA';
 
+export const clearData = () => {
+    return {
+        type: "CLEAR_DATA"
+    }
+}
 
 export const setGuid = (gid) => {
     return {
@@ -46,7 +52,7 @@ export const deletePhoto = (userId, gid, photo_id) => {
             );
 
             if (!response.ok) {
-                throw new Error('Network Error. Please Retry')
+                throw new Error('Photo.js - deletePhoto - Network Error. Please Retry')
             }
             else {
                 resData = await response.json();
@@ -82,7 +88,7 @@ export const getServerTime = (userId) => {
             );
 
             if (!response.ok) {
-                throw new Error('Network Error. Please Retry')
+                throw new Error('Photo.js - getServerTime - Network Error. Please Retry')
             }
             else {
                 resData = await response.json();
@@ -119,7 +125,7 @@ export const reviewPhotos = (userId, gid) => {
             );
 
             if (!response.ok) {
-                throw new Error('Network Error. Please Retry')
+                throw new Error('Photo.js - reviewPhotos - Network Error. Please Retry')
             }
             else {
                 resData = await response.json();
@@ -161,6 +167,7 @@ export const uploadCertPhoto = (userId, gid, time, photo_time, photo_coordinates
         formData.append("photo_size", 131175);
         formData.append("imei", imei_number);
         formData.append("model", model_name);
+        formData.append("browser_loc", photo_coordinates);
 
         formData.append("file", {
             uri: photo_location,
@@ -179,7 +186,7 @@ export const uploadCertPhoto = (userId, gid, time, photo_time, photo_coordinates
                 }
             );
             if (!response.ok) {
-                throw new Error('Network Error. Please Retry')
+                throw new Error('Photo.js - uploadCertPhoto - Network Error. Please Retry')
             }
             else {
 
@@ -219,7 +226,7 @@ export const submitForCertification = (userId, gid, cert_photos_id) => {
             );
 
             if (!response.ok) {
-                throw new Error('Network Error. Please Retry')
+                throw new Error('Photo.js - submitForCertification - Network Error. Please Retry')
             }
             else {
                 resData = await response.json();
@@ -255,7 +262,7 @@ export const getGlobals = (userId) => {
             );
 
             if (!response.ok) {
-                throw new Error('Network Error. Please Retry')
+                throw new Error('Photo.js - getGlobals - Network Error. Please Retry')
             }
             else {
                 resData = await response.json();
@@ -296,7 +303,7 @@ export const getPhotoInfo = (userId, photoId) => {
             //console.log(response)
 
             if (!response.ok) {
-                throw new Error('Network Error. Please Retry')
+                throw new Error('Photo.js - getPhotoInfo - Network Error. Please Retry')
                 console.log("Photo.js","Error")
             }
             else {

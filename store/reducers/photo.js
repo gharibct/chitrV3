@@ -2,7 +2,8 @@ import moment from 'moment'
 
 import {
     ADD_GUID, ADD_SERVERTIME, SET_REVIEWPHOTO,
-    DELETE_PHOTO, SUBMIT_PHOTOS, ADD_PHOTO, SET_LOCATION, SET_GLOBAL, PHOTO_INFO
+    DELETE_PHOTO, SUBMIT_PHOTOS, ADD_PHOTO, SET_LOCATION, SET_GLOBAL, PHOTO_INFO,
+    CLEAR_DATA
 } from '../actions/photo';
 
 const initialState = {
@@ -98,8 +99,8 @@ export default (state = initialState, action) => {
                 time_limit: action.globalValue.allowed_time,
                 cert_end_time: certEndTime
             };
-
-
+            case CLEAR_DATA:
+                return initialState;
         default:
             return state;
     }

@@ -157,7 +157,9 @@ const TakePhoto = props => {
   
 
   return (
-    <ScrollView>
+    <ScrollView
+    keyboardShouldPersistTaps='always'
+    >
       <View style={styles.form}>
         <ImgPicker onImageTaken={imageTakenHandler} remainingPhotos={photoValues.photo_remaining} />
 
@@ -188,7 +190,7 @@ const TakePhoto = props => {
           title="Review and Certify"
           color={Colors.primary}
           onPress={reviewAndCertify}
-          disabled={photoValues.max_photos == photoValues.remainingPhotos}
+          disabled={photoValues.max_photos == photoValues.photo_remaining}
         />
         </View>
 

@@ -2,6 +2,13 @@ import { BASEURL } from '../../constants/api'
 
 export const GET_CREDIT = 'GET_CREDIT';
 export const GET_CERTLIST = 'GET_CERTLIST';
+export const CLEAR_DATA = 'CLEAR_DATA';
+
+export const clearData = () => {
+    return {
+        type: "CLEAR_DATA"
+    }
+}
 
 
 export const getCredits = (userId) => {
@@ -21,7 +28,7 @@ export const getCredits = (userId) => {
             );
 
             if (!response.ok) {
-                throw new Error('Network Error. Please Retry')
+                throw new Error('Cert.js - getCredits - Network Error. Please Retry')
             }
             else {
                 resData = await response.json();
@@ -57,7 +64,7 @@ export const getCertList = (userId) => {
             );
 
             if (!response.ok) {
-                throw new Error('Network Error. Please Retry')
+                throw new Error('Cert.js - getCertList - Network Error. Please Retry')
             }
             else {
                 resData = await response.json();

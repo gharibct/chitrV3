@@ -130,7 +130,9 @@ const ForgetPassword = props => {
     >
       <View style={styles.gradient}>
         <Card style={styles.authContainer}>
-          <ScrollView>
+          <ScrollView
+          keyboardShouldPersistTaps='always'
+          >
             <View style={styles.headerContainer}>
               <Text
                 style={styles.headerText}

@@ -1,4 +1,4 @@
-import { LOGIN, RESET_SUBMIT_FLAG, SAVE_USERNAME, ID_UPDATE, CHANGE_MOBILE } from '../actions/auth';
+import { LOGIN, RESET_SUBMIT_FLAG, SAVE_USERNAME, ID_UPDATE, CHANGE_MOBILE, CLEAR_DATA } from '../actions/auth';
 
 const initialState = {
   //token: null,
@@ -17,17 +17,17 @@ const initialState = {
   "secret_ques1": "What is your birth place?",
   "ans1": "abc",
   */
-  user: "",
+  user: "hari.g@bahwancybertek.com",
   pass: "",
   userId: 0,
   first_name: "",
   last_name: "",
-  email: "",
+  email: "hari.g@bahwancybertek.com",
   mob: "",
   email_verification: false,
   mobile_verification: false,
   photo: '',
-  password: "",
+  password: "abc321!@#",
   "secret_ques1": "",
   "ans1": "",
   "submit_flag": false
@@ -72,6 +72,8 @@ export default (state = initialState, action) => {
         ...state,
         mob: action.mobile
       };
+    case CLEAR_DATA:
+      return initialState;
     default:
       return state;
   }

@@ -15,6 +15,13 @@ export const EMAIL_VERIFIED = 'EMAIL_VERIFIED';
 export const SAVE_USERNAME = 'SAVE_USERNAME';
 export const ID_UPDATE = 'ID_UPDATE';
 export const CHANGE_MOBILE = 'CHANGE_MOBILE';
+export const CLEAR_DATA = 'CLEAR_DATA';
+
+export const clearData = () => {
+    return {
+        type: "CLEAR_DATA"
+    }
+}
 
 
 export const login = (user, pass) => { 
@@ -41,7 +48,7 @@ export const login = (user, pass) => {
             );
 
             if (!response.ok) {
-                throw new Error('Network Error. Please Retry')
+                throw new Error('Auth.js - Login - Network Error. Please Retry')
             }
             else {
                 resData = await response.json();
@@ -81,7 +88,7 @@ export const signUp = (user) => {
             );
 
             if (!response.ok) {
-                throw new Error('Network Error. Please Retry')
+                throw new Error('Auth.js - Signup - Network Error. Please Retry')
             }
             else {
                 resData = await response.json();
@@ -115,7 +122,7 @@ export const forgotPassword = (email) => {
             );
 
             if (!response.ok) {
-                throw new Error('Network Error. Please Retry')
+                throw new Error('Auth.js - forgotPassword - Network Error. Please Retry')
             }
             else {
                 resData = await response.json();
@@ -149,7 +156,7 @@ export const verifyForgotOTP = (email,otp) => {
             );
 
             if (!response.ok) {
-                throw new Error('Network Error. Please Retry')
+                throw new Error('Auth.js - verifyForgotOTP - Network Error. Please Retry')
             }
             else {
                 resData = await response.json();
@@ -182,7 +189,7 @@ export const vadiateOTP = (email,otp_email,otp_mob) => {
             );
 
             if (!response.ok) {
-                throw new Error('Network Error. Please Retry')
+                throw new Error('Auth.js - validateOTP - Network Error. Please Retry')
             }
             else {
                 resData = await response.json();
@@ -221,7 +228,7 @@ export const setNewPassword = (email,new_pass) => {
             );
             
             if (!response.ok) {
-                throw new Error('Network Error. Please Retry')
+                throw new Error('Auth.js - setNewPassword - Network Error. Please Retry')
             }
             else {
                 resData = await response.json();
@@ -255,7 +262,7 @@ export const requestEmailOTP = (id) => {
             );
 
             if (!response.ok) {
-                throw new Error('Network Error. Please Retry')
+                throw new Error('Auth.js - requestEmailOTP - Network Error. Please Retry')
             }
             else {
                 resData = await response.json();
@@ -289,7 +296,7 @@ export const requestMobOTP = (id) => {
             );
 
             if (!response.ok) {
-                throw new Error('Network Error. Please Retry')
+                throw new Error('Auth.js - requestMobOTP - Network Error. Please Retry')
             }
             else {
                 resData = await response.json();
@@ -335,7 +342,7 @@ export const requestChangePassOTP = (userId) => {
             );
 
             if (!response.ok) {
-                throw new Error('Network Error. Please Retry')
+                throw new Error('Auth.js - requestChangePassOTP - Network Error. Please Retry')
             }
             else {
                 resData = await response.json();
@@ -368,7 +375,7 @@ export const verifyOTP = (userId,otp) => {
             );
 
             if (!response.ok) {
-                throw new Error('Network Error. Please Retry')
+                throw new Error('Auth.js - verifyOTP - Network Error. Please Retry')
             }
             else {
                 resData = await response.json();
@@ -407,7 +414,7 @@ export const changePassword = (userId,new_pass) => {
             );
             
             if (!response.ok) {
-                throw new Error('Network Error. Please Retry')
+                throw new Error('Auth.js - changePassword - Network Error. Please Retry')
             }
             else {
                 resData = await response.json();
@@ -440,7 +447,7 @@ export const requestMobileOTP = (userId) => {
             );
 
             if (!response.ok) {
-                throw new Error('Network Error. Please Retry')
+                throw new Error('Auth.js - requestMobileOTP - Network Error. Please Retry')
             }
             else {
                 resData = await response.json();
@@ -474,7 +481,7 @@ export const changeMobile = (userId,mobile) => {
             );
             
             if (!response.ok) {
-                throw new Error('Network Error. Please Retry')
+                throw new Error('Auth.js - changeMobile - Network Error. Please Retry')
             }
             else {
                 resData = await response.json();

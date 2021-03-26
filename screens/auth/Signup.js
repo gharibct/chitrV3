@@ -74,6 +74,7 @@ const Signup = props => {
 
   const inputChangeHandler = useCallback(
     (inputIdentifier, inputValue, inputValidity) => {
+      console.log(inputIdentifier, inputValue, inputValidity)
       dispatchFormState({
         type: FORM_INPUT_UPDATE,
         value: inputValue,
@@ -120,14 +121,16 @@ const Signup = props => {
     last_name: '',
     email: '',
     password: '',
-    mob: ''
+    mob: '',
+    agree:false
   },
   inputValidities: {
     first_name: false,
     last_name: false,
     email: false,
     password: false,
-    mob: false
+    mob: false,
+    agree:true
   },
   formIsValid: false
 });
@@ -141,7 +144,14 @@ const Signup = props => {
       ]);
       return;
     }
-    
+
+    if (!formState.inputValues.agree) {
+      Alert.alert('Accept Terms & Conditions', 'Please Accept Terms & Conditions to proceed further', [
+        { text: 'Okay' }
+      ]);
+      return;
+    }    
+
     setError(null);
     setIsLoading(true);
     try {
@@ -171,7 +181,9 @@ const Signup = props => {
     >
       <View style={styles.gradient}>
         <Card style={styles.authContainer}>
-          <ScrollView>
+          <ScrollView
+            keyboardShouldPersistTaps='always'
+          >
             <View style={styles.inputContainer}>
               <Input
                 id="first_name"
@@ -272,8 +284,10 @@ const Signup = props => {
               />
               */}
               <InputCheckbox
-                initialValue="false"
+                id="agree"
+                initialValue={false}
                 label="I Accept terms and conditions"
+                onInputChange={inputChangeHandler}
               />
             </View>
 

@@ -11,7 +11,7 @@ import {
 
 import Colors from '../../constants/Colors';
 
-import { Card, Input,ActivityLoading } from '../../components/UI/Index';
+import { Card, Input, ActivityLoading } from '../../components/UI/Index';
 import { useDispatch, useSelector } from 'react-redux';
 
 import * as authActions from '../../store/actions/auth';
@@ -93,6 +93,34 @@ const VerifyOTP = props => {
   });
   /*FormInput Ends*/
 
+  /*Screen - Init Logic*/
+  useEffect(() => {
+    screenInitHandler();
+  }, [dispatch]);
+
+  const screenInitHandler = async () => {
+    setError(null);
+    setIsLoading(true);
+
+    //const uuid = '8d746d5e-6747-4335-8c8a-aa14d3a0a226';
+    try {
+      console.log(authValues.userId)
+      await dispatch(authActions.requestEmailOTP(
+        authValues.userId
+      ))
+      await dispatch(authActions.requestMobOTP(
+        authValues.userId
+      ))
+      setIsLoading(false);
+    }
+    catch (err) {
+      setIsLoading(false);
+      //setError(err.message)
+      console.log(err.message)
+    }
+  }
+
+
   const submitHandler = async () => {
     setSubmitFlag(true);
     if (!formState.formIsValid) {
@@ -163,8 +191,10 @@ const VerifyOTP = props => {
     >
       <View style={styles.gradient}>
         <Card style={styles.authContainer}>
-          <ScrollView>
-          <View style={styles.headerContainer}>
+          <ScrollView
+          keyboardShouldPersistTaps='always'
+          >
+            <View style={styles.headerContainer}>
               <Text
                 style={styles.headerText}
               >EMail & Mobile Verification
