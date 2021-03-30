@@ -104,7 +104,6 @@ const VerifyOTP = props => {
 
     //const uuid = '8d746d5e-6747-4335-8c8a-aa14d3a0a226';
     try {
-      console.log(authValues.userId)
       await dispatch(authActions.requestEmailOTP(
         authValues.userId
       ))

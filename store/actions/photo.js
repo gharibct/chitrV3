@@ -154,8 +154,6 @@ export const uploadCertPhoto = (userId, gid, time, photo_time, photo_coordinates
         const fileName = uriParts[uriParts.length - 1];
         const fileParts = fileName.split('.');
         const fileType = fileParts[uriParts.length - 1];
-        //console.log("photo_coordinates", photo_coordinates)
-        //photo_coordinates="16.899001,81.674698"
 
         const formData = new FormData();
         formData.append("id", userId);
@@ -282,9 +280,9 @@ export const getGlobals = (userId) => {
 }
 
 
-export const getPhotoInfo = (userId, photoId) => {
+export const getPhotoInfo = (userId, photoId,gid) => {
     return async (dispatch) => {
-        //console.log("getphotoinfo - dispatch",dispatch)
+
         let resData = {};
         try {
             const response = await fetch(BASEURL + 'getPhotoInfo',
@@ -295,32 +293,28 @@ export const getPhotoInfo = (userId, photoId) => {
                     },
                     body: JSON.stringify({
                         id: userId,
-                        photo_id:photoId
+                        photo_id:photoId,
+                        gid:gid
                     })
                 }
             );
             
-            //console.log(response)
 
             if (!response.ok) {
                 throw new Error('Photo.js - getPhotoInfo - Network Error. Please Retry')
-                console.log("Photo.js","Error")
             }
             else {
                 resData = await response.json();
-                //console.log("Photo.js",resData)
             }
 
             if (resData.photo_location != undefined)
             {
-                //console.log( " photo_location", photoId, resData.photo_location)
                 //dispatch({ type: 'PHOTO_INFO', photo_id: photoId,  photo_location: resData.data.photo_location })
                 dispatch({ type: 'PHOTO_INFO', photo_id: photoId,photo_location:resData.photo_location})
                 //dispatch({ type: 'PHOTO_INFO'})
             }
             /*
             if (resData.result == 0) {
-                console.log( " photo_location", resData.data.photo_location)
                 dispatch({ type: PHOTO_INFO, photo_id: photoId, photo_location: resData.data.photo_location })
             }
             else {
@@ -340,7 +334,6 @@ export const getPhotoInfo = (userId, photoId) => {
     return async (dispatch) => {
         let resData = {};
         try {
-            console.log("photoId1", BASEURL + 'getPhotoInfo?id=' + userId + '&photo_id=' + photoId)
             
             const response = await fetch(BASEURL + 'getPhotoInfo',
                 {
@@ -355,7 +348,6 @@ export const getPhotoInfo = (userId, photoId) => {
                 }
             );
                       
-            console.log("photo id response", response)
 
             if (!response.ok) {
                 throw new Error('Network Error. Please Retry')
@@ -365,7 +357,6 @@ export const getPhotoInfo = (userId, photoId) => {
             }
 
             if (resData.result == 0) {
-                //console.log(resData);
                 dispatch({ type: PHOTO_INFO, photo_id: photoId, photo_location: resData.data.photo_location })
             }
             else {

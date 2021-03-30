@@ -58,6 +58,17 @@ const TakePhoto = props => {
       );
       return false;
     }
+
+    const result1 = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+    if (result1.status !== 'granted') {
+      Alert.alert(
+        'Insufficient permissions!',
+        'You need to grant camera permissions to use this app.',
+        [{ text: 'Okay' }]
+      );
+      return false;
+    }    
+    
     return true;
   };
 
@@ -105,7 +116,6 @@ const TakePhoto = props => {
     //const uuid = '8d746d5e-6747-4335-8c8a-aa14d3a0a226';
     try {
       await dispatch(photoActions.getServerTime(authValues.userId))
-      //console.log("photo gid - ",uuid)
       dispatch(photoActions.setGuid(uuid))
       await getLocationHandler();
       setIsLoading(false);

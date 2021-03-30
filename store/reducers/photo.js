@@ -21,7 +21,6 @@ const initialState = {
 }; 
 
 export default (state = initialState, action) => {
-    //console.log("photo-action.type",action.type)
     switch (action.type) {
         case ADD_GUID:
             return {
@@ -62,7 +61,6 @@ export default (state = initialState, action) => {
             let tmp_photo_location = state.photo_location;
             
             tmp_photo_location[action.photo_id]=action.photo_location;
-            //console.log("tmp_photo_location",tmp_photo_location,action.photo_location)
             return {
                 //token: action.token,
                 ...state,

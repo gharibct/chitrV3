@@ -76,7 +76,6 @@ export const signUp = (user) => {
                 Crypto.CryptoDigestAlgorithm.SHA1,
                 user.password
             );
-            console.log("Registration",user);
             const response = await fetch(BASEURL + 'register',
                 {
                     method: 'POST',

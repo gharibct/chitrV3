@@ -70,8 +70,7 @@ const ReviewAndCertify = props => {
       await dispatch(photoActions.reviewPhotos(authValues.userId,photoValues.gid))
       /*
       ReviewData.forEach(element => {
-        console.log("ReviewData");
-        console.log(element)
+
       });
       */
       //await dispatch(photoActions.getPhotoInfo(34,"84e28b36ddc642a197fb82819475162b"))
@@ -101,6 +100,7 @@ const ReviewAndCertify = props => {
     //const uuid = uuidv4();
     try {
       await dispatch(photoActions.submitForCertification(authValues.userId,photoValues.gid,cert_photo_ids))
+      await dispatch(certActions.getCredits(authValues.userId))
       await dispatch(certActions.getCertList(authValues.userId))
       props.navigation.navigate('home');
     }
@@ -127,6 +127,7 @@ const ReviewAndCertify = props => {
                 submitForCertificationHandler();
                 //props.navigation.navigate('home');
               }}
+              disabled={photoValues.max_photos == photoValues.photo_remaining}
             />
           </View>
           <CountDownTimer maxTime={photoValues.cert_end_time}/>
@@ -142,6 +143,7 @@ const ReviewAndCertify = props => {
             <ReviewCertifyItem
               photo_id={reviewData.item.photo_id}
               userId={authValues.userId}
+              gid={photoValues.gid}
               onDelete={deleteHandler}
             />
           )}

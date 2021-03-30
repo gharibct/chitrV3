@@ -141,13 +141,11 @@ const ChangePassword = props => {
         setIsLoading(true);
 
         try {
-            console.log("verifyOTP",authValues.userId);
             await dispatch(authActions.verifyOTP(
                 authValues.userId,
                 formState.inputValues.otp_email
             ))
 
-            console.log("changePassword",authValues.userId);
             await dispatch(authActions.changePassword(
                 authValues.userId,
                 formState.inputValues.pass
@@ -170,7 +168,6 @@ const ChangePassword = props => {
     const requestEmailOTPHandler = async () => {
         setIsLoading(true);
         try {
-            console.log("authValues.userId",authValues.userId)
             await dispatch(authActions.requestChangePassOTP(
                 authValues.userId
             ))

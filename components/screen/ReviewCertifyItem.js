@@ -23,8 +23,6 @@ const ReviewCertifyItem = props => {
     const dispatch = useDispatch();
 
     const PhotoLocation = useSelector(state => {
-
-        //console.log(state.photo)
         return state.photo.photo_location
     });
     
@@ -36,8 +34,7 @@ const ReviewCertifyItem = props => {
     const getPhotoInfo = async () => {
         //const uuid = uuidv4();
         try {
-            //console.log("Review and Certify",props.userId,props.photo_id)
-            await dispatch(photoActions.getPhotoInfo(props.userId,props.photo_id))
+            await dispatch(photoActions.getPhotoInfo(props.userId,props.photo_id,props.gid))
         }
         catch (err) {
         }
@@ -58,7 +55,7 @@ const ReviewCertifyItem = props => {
                         <View style={styles.imageContainer}>
                             <Image
                                 style={styles.image}
-                                source={{ uri: BASEURL + 'getPhoto?id=' + props.userId + '&photo_id=' + props.photo_id }}
+                                source={{ uri: BASEURL + 'getPhoto?id=' + props.userId + '&photo_id=' + props.photo_id  + '&gid=' + props.gid}}
                                 cache='reload'
                                 loadingIndicatorSource={require('../../assets/Spinner-pink.gif')}
                             />

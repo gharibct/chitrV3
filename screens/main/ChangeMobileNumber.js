@@ -158,7 +158,6 @@ const ChangeMobileNumber = props => {
     const requestmobileOTPHandler = async () => {
         setIsLoading(true);
         try {
-            console.log("authValues.userId",authValues.userId)
             await dispatch(authActions.requestMobileOTP(
                 authValues.userId
             ))

@@ -135,8 +135,6 @@ const LoginScreen = props => {
     setIsLoading(true);
 
     try {
-      console.log(formState.inputValues.user,
-        formState.inputValues.pass)
       await dispatch(authActions.login(
         formState.inputValues.user,
         formState.inputValues.pass
