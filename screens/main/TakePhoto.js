@@ -53,7 +53,7 @@ const TakePhoto = props => {
     if (result.status !== 'granted') {
       Alert.alert(
         'Insufficient permissions!',
-        'You need to grant location permissions to use this app.',
+        'You need to grant location permissions to use this app (E-101)',
         [{ text: 'Okay' }]
       );
       return false;
@@ -63,11 +63,32 @@ const TakePhoto = props => {
     if (result1.status !== 'granted') {
       Alert.alert(
         'Insufficient permissions!',
-        'You need to grant camera permissions to use this app.',
+        'You need to grant camera permissions to use this app (E-102)',
+        [{ text: 'Okay' }]
+      );
+      return false;
+    }   
+    
+    const result3 = await Permissions.askAsync(Permissions.CAMERA);
+    if (result3.status !== 'granted') {
+      Alert.alert(
+        'Insufficient permissions!',
+        'You need to grant camera permissions to use this app (E-103)',
+        [{ text: 'Okay' }]
+      );
+      return false;
+    }       
+    /*
+    const result2 = await Permissions.askAsync(Permissions.MEDIA_LIBRARY);
+    if (result2.status !== 'granted') {
+      Alert.alert(
+        'Insufficient permissions!',
+        'You need to grant media access permission to use this app (E-104)',
         [{ text: 'Okay' }]
       );
       return false;
     }    
+    */    
     
     return true;
   };

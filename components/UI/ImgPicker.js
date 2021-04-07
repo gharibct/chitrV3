@@ -9,17 +9,21 @@ const ImgPicker = props => {
   const [pickedImage, setPickedImage] = useState();
 
   const verifyPermissions = async () => {
-    //const result = await Permissions.askAsync(Permissions.CAMERA_ROLL);
-    const result = await ImagePicker.requestCameraRollPermissionsAsync();
-    if (result.status !== 'granted') {
-      Alert.alert(
-        'Insufficient permissions!',
-        'You need to grant camera permissions to use this app.',
-        [{ text: 'Okay' }]
-      );
-      return false;
-    }
 
+    let permission = await Permissions.getAsync(Permissions.CAMERA_ROLL);
+    if(permission.status !== 'granted')
+    {
+      const result = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+      //const result = await ImagePicker.requestCameraRollPermissionsAsync();
+      if (result.status !== 'granted') {
+        Alert.alert(
+          'Insufficient permissions!',
+          'You need to grant camera permissions to use this app. (E-105)',
+          [{ text: 'Okay' }]
+        );
+        return false;
+      }
+    }
     return true;
   };
 
@@ -27,10 +31,13 @@ const ImgPicker = props => {
     if(props.remainingPhotos <= 0){
       return;
     }
+    
     const hasPermission = await verifyPermissions();
     if (!hasPermission) {
       return;
     }
+    
+
     const image = await ImagePicker.launchCameraAsync({ 
       /*
       aspect: [16, 9],
