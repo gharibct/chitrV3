@@ -51,6 +51,26 @@ const ViewCertificate = props => {
   const dispatch = useDispatch();
   /*Reusable code -- Ends */
 
+  /*Screen - Init Logic*/
+  useEffect(() => {
+    screenInitHandler();
+  }, [dispatch]); 
+
+  const screenInitHandler = async () => {
+    setError(null);
+    setIsLoading(true);
+
+    try {
+      await dispatch(certActions.getCredits(authValues.userId))
+      await dispatch(certActions.getCertList(authValues.userId))
+      setIsLoading(false)
+    }
+    catch (err) {
+      setIsLoading(false)
+      setError(err.message)
+    }
+  }
+
   return (
     <KeyboardAvoidingView
       style={styles.screen}

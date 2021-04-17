@@ -80,7 +80,7 @@ const CertificateItem = props => {
                             <View style={styles.detailContainer}>
                                 <Text style={styles.labelText}>Date</Text>
                                 <Text style={styles.valueText}>
-                                    {moment(props.DateTime).format('DD-MM-YYYY HH:MM')}
+                                    {moment(props.DateTime).format('DD-MM-YYYY HH:mm')}
                                 </Text>
                             </View>
                             <View style={styles.detailContainer}>
