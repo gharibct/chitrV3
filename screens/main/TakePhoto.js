@@ -104,7 +104,9 @@ const TakePhoto = props => {
       const location = await Location.getCurrentPositionAsync({
         timeout: 20000
       });
-      dispatch(photoActions.setLocation(location.coords.latitude,location.coords.longitude));
+      dispatch(photoActions.setLocation(location.coords.latitude,location.coords.longitude,
+        location.coords.accuracy,location.coords.altitude,location.coords.altitudeAccuracy
+        ));
     } catch (err) {
       console.log("Could not fetch location!",err)
     }
@@ -164,7 +166,13 @@ const TakePhoto = props => {
         1000,
         imagePath,
         "imei",
-        Device.modelName + "-" +Device.deviceName
+        Device.modelName + "-" +Device.deviceName,
+        photoValues.accuracy,
+        //12.9512,
+        photoValues.altitude,
+        //-87.3,
+        photoValues.altitudeAccuracy
+        //2
       ))
       setIsLoading(false);
     }

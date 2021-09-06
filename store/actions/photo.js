@@ -24,11 +24,14 @@ export const setGuid = (gid) => {
     }
 }
 
-export const setLocation = (lat, lng) => {
+export const setLocation = (lat, lng,accuracy,altitude,altitudeAccuracy ) => {
     return {
         type: "SET_LOCATION",
         lat: lat,
-        lng: lng
+        lng: lng,
+        accuracy: accuracy, 
+        altitude: altitude,
+        altitudeAccuracy:altitudeAccuracy 
     }
 }
 
@@ -145,7 +148,10 @@ export const reviewPhotos = (userId, gid) => {
 }
 
 
-export const uploadCertPhoto = (userId, gid, time, photo_time, photo_coordinates, photo_cellid, photo_size, photo_location, imei_number, model_name) => {
+export const uploadCertPhoto = (userId, gid, time, photo_time, photo_coordinates, photo_cellid, 
+    photo_size, photo_location, imei_number, model_name,
+    accuracy,altitude,altitudeAccuracy
+    ) => {
 
     return async (dispatch) => {
         let resData = {};
@@ -166,6 +172,9 @@ export const uploadCertPhoto = (userId, gid, time, photo_time, photo_coordinates
         formData.append("imei", imei_number);
         formData.append("model", model_name);
         formData.append("browser_loc", photo_coordinates);
+        formData.append("accuracy", accuracy);
+        formData.append("altitude", altitude);
+        formData.append("altitudeAccuracy", altitudeAccuracy);
 
         formData.append("file", {
             uri: photo_location,

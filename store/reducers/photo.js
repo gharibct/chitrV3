@@ -14,10 +14,13 @@ const initialState = {
     max_photos: 5,
     lat: 0,
     lng: 0,
+    accuracy: 0,
+    altitude: 0,
+    altitudeAccuracy:0  ,
     review_photo: [],
     time_limit: 300,
     cert_end_time: null,
-    photo_location: {}
+    photo_location: {} 
 }; 
 
 export default (state = initialState, action) => {
@@ -29,11 +32,15 @@ export default (state = initialState, action) => {
                 gid: action.gid
             };
         case SET_LOCATION:
+            console.log("action",action)
             return {
                 //token: action.token,
                 ...state,
                 lat: action.lat,
-                lng: action.lng
+                lng: action.lng,
+                accuracy: action.accuracy,
+                altitude: action.altitude,
+                altitudeAccuracy:action.altitudeAccuracy                 
             };
         case ADD_PHOTO:
             return {
